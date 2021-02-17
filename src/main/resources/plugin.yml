@@ -1,0 +1,12 @@
+name: KeepItems
+main: org.crysis.keepitems.KeepItems
+version: ${pluginVersion}
+author: crysis992
+description: Keep items or exp on death
+permissions:
+  keepitems.keepxp:
+    description: Keep XP upon death.
+    default: false
+  keepitems.keep:
+    description: Keep items upon death.
+    default: false
