@@ -4,7 +4,7 @@ import java.util.HashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class InventoryHandler {
+class InventoryHandler {
 	private static InventoryHandler instance = new InventoryHandler();
 	private HashMap<Player, ItemStack[]> inventories;
 	private HashMap<Player, ItemStack[]> armors;
@@ -14,7 +14,7 @@ public class InventoryHandler {
 		armors = new HashMap<Player, ItemStack[]>();
 	}
 
-	public void saveInventoryAndArmor(Player _player) {
+	void saveInventoryAndArmor(Player _player) {
 		ItemStack[] tmpinv = new ItemStack[_player.getInventory().getSize()];
 		ItemStack[] tmpArmor = new ItemStack[_player.getInventory().getArmorContents().length];
 		tmpArmor = _player.getInventory().getArmorContents();
@@ -23,28 +23,28 @@ public class InventoryHandler {
 		armors.put(_player, tmpArmor);
 	}
 
-	public ItemStack[] loadInventory(Player _player) {
-		return (ItemStack[]) inventories.get(_player);
+	ItemStack[] loadInventory(Player _player) {
+		return inventories.get(_player);
 	}
 
-	public ItemStack[] loadArmor(Player _player) {
-		return (ItemStack[]) armors.get(_player);
+	ItemStack[] loadArmor(Player _player) {
+		return armors.get(_player);
 	}
 
-	public void removeInventoryAndArmor(Player _player) {
+	void removeInventoryAndArmor(Player _player) {
 		inventories.remove(_player);
 		armors.remove(_player);
 	}
 
-	public boolean hasInventorySaved(Player _player) {
+	boolean hasInventorySaved(Player _player) {
 		return inventories.containsKey(_player);
 	}
 
-	public boolean hasArmorSaved(Player _player) {
+	boolean hasArmorSaved(Player _player) {
 		return armors.containsKey(_player);
 	}
 
-	public static InventoryHandler getInstance() {
+	static InventoryHandler getInstance() {
 		return instance;
 	}
 }

@@ -12,9 +12,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.crysis.keepitems.metrics.Metrics;
 
 public class KeepItems extends JavaPlugin implements Listener {
-	
+    
 	private final boolean hasMethod = hasMethod("setKeepInventory");
-	
+    
 	public void onEnable() {
 		Bukkit.getPluginManager().registerEvents(this, this);
 		new Metrics(this);
@@ -22,8 +22,8 @@ public class KeepItems extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onEntityDeath(PlayerDeathEvent event) {
-		Player player = (Player) event.getEntity();
-
+		Player player = event.getEntity();
+        
 		if (player.hasPermission("keepitems.keep")) {
 			if (!hasMethod) {
 				InventoryHandler.getInstance().saveInventoryAndArmor(player);
@@ -33,7 +33,7 @@ public class KeepItems extends JavaPlugin implements Listener {
 				event.getDrops().clear();
 			}
 		}
-
+        
 		if (player.hasPermission("keepitems.keepxp")) {
 			event.setKeepLevel(true);
 			event.setDroppedExp(0);
@@ -51,14 +51,14 @@ public class KeepItems extends JavaPlugin implements Listener {
 		}
 		return hasMethod;
 	}
-
+    
 	@EventHandler
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		Player player = event.getPlayer();
-
+        
 		if (player.hasPermission("keepitems.keep")) {
 			InventoryHandler ih = InventoryHandler.getInstance();
-
+            
 			if ((ih.hasInventorySaved(player)) && (ih.hasArmorSaved(player))) {
 				player.getInventory().setContents(ih.loadInventory(player));
 				player.getInventory().setArmorContents(ih.loadArmor(player));
@@ -66,4 +66,4 @@ public class KeepItems extends JavaPlugin implements Listener {
 			}
 		}
 	}
-   }
+}
